@@ -10,24 +10,17 @@
 
 <script>
 import { ref } from '@vue/reactivity'
-import { auth } from '../firebase/config'
+import useSignup from '../composables/useSignup'
 export default {
     setup(){
         const displayName= ref("")
         const email= ref("")
         const password= ref("")
-        const error= ref(null)
         
+        const {error, createAccount}= useSignup()
         const signUp= async()=>{
-            try{
-              let res= await auth.createUserWithEmailAndPassword(email.value, password.value)
-              if(!res){
-                throw new Error("could not create account.")
-              }
-              console.log(res.user);
-            }catch(err){
-              error.value= err.message;
-            }
+          let res= await createAccount(email.value, password.value, displayName.value)
+          console.log(res);
         }
 
         return {displayName, email, password, signUp}
