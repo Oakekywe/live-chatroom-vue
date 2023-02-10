@@ -1,10 +1,10 @@
 <template>
   <div class="chat-window">
-    <div class="messages">
+    <div class="messages" v-for="message in messages" :key="message.id">
         <div class="single">
-            <span class="created-at">3 mins ago</span>
-            <span class="name">hmt</span>
-            <span class="message">hi there</span>
+            <span class="created-at">{{message.created_at}}</span>
+            <span class="name">{{message.name}}</span>
+            <span class="message">{{message.message}}</span>
         </div>
         
     </div>
@@ -12,8 +12,22 @@
 </template>
 
 <script>
+import { db } from '@/firebase/config'
+import { ref } from '@vue/reactivity'
 export default {
+    setup(){
+        let messages= ref([])
 
+        db.collection("messages").orderBy("created_at").onSnapshot((snap)=>{
+            let results=[]
+            snap.docs.forEach((doc)=>{
+                let document= {...doc.data(), id:doc.id}
+                results.push(document)
+            })
+            messages.value= results
+        })
+        return {messages}
+    }
 }
 </script>
 
