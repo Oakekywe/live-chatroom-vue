@@ -48,7 +48,6 @@ export default {
       margin: 20px 0 10px;
     } */
     .welcome input{
-      width: 100%;
       padding: 10px;
       border-radius: 20px;
       border: 1px solid #eee;

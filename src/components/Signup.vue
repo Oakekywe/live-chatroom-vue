@@ -1,9 +1,11 @@
 <template>
   <h2>Sign Up</h2>
   <form @submit.prevent="signUp">
-    <input type="text" placeholder="Display name" v-model="displayName">
-    <input type="email" placeholder="Email" v-model="email">
-    <input type="password" placeholder="Password" v-model="password">
+    <div>
+      <input type="text" placeholder="Display name" v-model="displayName">
+      <input type="email" placeholder="Email" v-model="email">
+      <input type="password" placeholder="Password" v-model="password">
+    </div>
     <div v-if="error" class="error">
       {{error}}
     </div>
