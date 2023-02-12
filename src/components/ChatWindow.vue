@@ -25,9 +25,6 @@ export default {
           messageBox.value.scrollTop= messageBox.value.scrollHeight
         })
 
-
-
-
         //change date format with Date fns 
         let formattedMessages= computed(()=>{
           return messages.value.map((message)=>{

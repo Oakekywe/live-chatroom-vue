@@ -4,6 +4,7 @@
         <p>Hi {{user.displayName}}</p>
         <p class="email">logged in as {{user.email}}</p>
     </div>
+    <button @click="deleteAll">Delete</button>
     <button @click="logout">Logout</button>
   </nav>
 </template>
@@ -11,13 +12,12 @@
 <script>
 import { ref } from '@vue/reactivity'
 import getUser from '../composables/getUser'
-import { auth } from '@/firebase/config'
+import { auth, db } from '@/firebase/config'
 
 export default {
     setup(){
         let error= ref(null)
         let {user}= getUser()
-
         
         const logout= async()=>{
             try{
@@ -29,9 +29,23 @@ export default {
             }
         }
 
+        // delete button feature
+        const deleteAll= async()=>{
+            let ids= ref([])
+            let res= await db.collection("messages").get()
+            res.forEach((doc)=>{
+                ids.value.push(doc.id)
+            })
+            
+            if(ids.value!=null){
+                ids.value.forEach((id)=>{
+                    db.collection("messages").doc(id).delete()
+                })
+            }
+        }
 
         
-        return {logout, user}
+        return {logout, user, deleteAll}
     }
 }
 </script>
