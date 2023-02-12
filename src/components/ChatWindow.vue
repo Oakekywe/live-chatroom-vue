@@ -3,7 +3,7 @@
     <div class="messages" ref="messageBox">
         <div class="single" v-for="message in formattedMessages" :key="message.id">
             <span class="created-at">{{message.created_at}}</span>
-            <span class="name">{{message.name}}</span>
+            <span class="name">{{message.name}}: </span>
             <span class="message">{{message.message}}</span>
         </div>
         

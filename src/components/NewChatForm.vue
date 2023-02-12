@@ -1,6 +1,9 @@
 <template>
   <form @submit.prevent="">
-    <textarea placeholder="text message and click enter to send" v-model="message" @keypress.enter="handleSubmit"></textarea>
+    <div class="flex">
+        <textarea placeholder="text message and click enter to send" v-model="message" @keypress.enter="handleSubmit"></textarea>
+        <span @click="handleSubmit" class="material-icons send">send</span>
+    </div>
   </form>
 </template>
 
@@ -12,7 +15,7 @@ import useCollection from '../composables/useCollection'
 
 export default {
 setup(){
-    let message= ref("")
+    let message= ref(null)
     let {user}= getUser()
     let {error, addDoc}= useCollection("messages")
 
@@ -22,8 +25,10 @@ setup(){
             name: user.value.displayName,
             created_at: timestamp()
         }
-        await addDoc(chat); //add document to db use composables function
-        message.value=""
+        if(message.value){
+            await addDoc(chat); //add document to db use composables function
+            message.value= null
+        }
     }
     return {message, handleSubmit}
 }
@@ -44,5 +49,16 @@ setup(){
         border-radius: 20px;
         font-family: inherit;
         outline: none;
+    }
+    .flex{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .send{
+        padding-bottom: 20px;
+        cursor: pointer;
+        margin: 0 10px;
+        color: #42d1b7;
     }
 </style>
