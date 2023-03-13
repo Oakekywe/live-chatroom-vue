@@ -3,8 +3,13 @@
     <div class="messages" ref="messageBox">
         <div class="single" v-for="message in formattedMessages" :key="message.id">
             <span class="created-at">{{message.created_at}}</span>
-            <span class="name">{{message.name}}: </span>
-            <span class="message">{{message.message}}</span>
+            <!-- <div class="flex">
+              <div> -->
+                <span class="name">{{message.name}}: </span>
+                <span class="message">{{message.message}}</span>
+              <!-- </div> -->
+              <!-- <span class="material-icons" @click="deleteSingleMessage">delete</span> -->
+            <!-- </div> -->
         </div>
         
     </div>
