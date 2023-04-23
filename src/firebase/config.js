@@ -3,12 +3,12 @@ import "firebase/firestore"
 import "firebase/auth"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBuCc3QV31JJd9cFfjMZZFYzXMOqLEEtG8",
-  authDomain: "live-chatroom-15004.firebaseapp.com",
-  projectId: "live-chatroom-15004",
-  storageBucket: "live-chatroom-15004.appspot.com",
-  messagingSenderId: "959747439476",
-  appId: "1:959747439476:web:16380e1d7e2cd42b8cca21"
+  apiKey: "AIzaSyCpHVklO4NHfjFYfEff2HMd3t0zoaE2WrM",
+  authDomain: "chatroom-57af2.firebaseapp.com",
+  projectId: "chatroom-57af2",
+  storageBucket: "chatroom-57af2.appspot.com",
+  messagingSenderId: "149274040018",
+  appId: "1:149274040018:web:02c56a875cbbf0187fbf0b"
 };
   
 firebase.initializeApp(firebaseConfig)
